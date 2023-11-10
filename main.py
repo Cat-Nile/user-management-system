@@ -4,10 +4,13 @@ from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_session import Session
 
+import os
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ums.sqlite"
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///"+os.path.join(BASEDIR, "db.sqlite")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = "edf11f3beb5d1ba8ccc30ee2"
 app.config["SESSION_PERMANENT"] = False
